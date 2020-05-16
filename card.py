@@ -14,18 +14,27 @@
 # }}}
 
 ROLES = ('Slave', 'Citizen', 'Emperor')
+SKINS = {"Citizen": [".------. ", "|C.--. | ", "| (\/) | ", "| :\/: | ", "| '--'C| ", "`------' "],
+         "Emperor": [".------. ", "|E.--. | ", "| :(): | ", "| ()() | ", "| '--'E| ", "`------' "],
+         "Slave":   [".------. ", "|S.--. | ", "| :/\: | ", "| :\/: | ", "| '--'S| ", "`------' "]}
 
 class Role:
     """ Role identification
-    0: Emperor
-    1: Citizen
-    2: Slave
+    0: Emperor (E) | 1: Citizen (C)  | 2: Slave  (S)
+       .------.    |    .------.     |    .------.
+       |S.--. |    |    |C.--. |     |    |S.--. |
+       | :/\: |    |    | (\/) |     |    | :/\: |
+       | :\/: |    |    | :\/: |     |    | :\/: |
+       | '--'S|    |    | '--'C|     |    | '--'S|
+       `------'    |    `------'     |    `------'
 
     Rule: 0 > 1 > 2 > 0
     """
+
     def __init__(self, iden):
         self.iden = iden
         self.string = ''
+        self.skin = SKINS[ROLES[iden]]
         if iden <= 2:
             self.string = ROLES[iden]
         else:
@@ -47,6 +56,7 @@ class Role:
 class Card:
     def __init__(self, role):
         self.role = Role(role)
+        self.skin = self.role.skin
 
     def __eq__(self, other):
         return self.role == other.role
