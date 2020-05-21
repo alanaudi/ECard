@@ -16,10 +16,10 @@ from hand import Hand
 num_of_roles = 3
 ROLES = ('Slave', 'Citizen', 'Emperor')
 
+
 class Player:
     def __init__(self, name, role):
         self.name = name
         self.role = ROLES.index(role)
         self.hand = Hand(self.role)
         self.score = 0
-

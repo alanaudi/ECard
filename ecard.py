@@ -3,7 +3,6 @@
 
 # {{{
 # Standard import
-import os
 import sys
 from time import sleep
 import random
@@ -15,24 +14,25 @@ from player import Player
 from color import Color
 # }}}
 
+
 def typing(msg):
     for char in msg:
         sleep(random.choice([0.01, 0.03, 0.05, 0.07, 0.09]))
         sys.stdout.write(char)
         sys.stdout.flush()
 
+
 class ECard:
-    def __init__(self, line:int=5):
+    def __init__(self, line: int = 5):
         self.slave = Player("伊藤開司", "Slave")
         self.emperor = Player("利根川幸雄", "Emperor")
         self.winner = None
         self.loser = None
         self.players = []
 
-
     @staticmethod
     def show_cards(cards):
-        hand = reduce(lambda x, y: [x[i]+y[i] for i in range(6)], [card.skin for card in cards])
+        hand = reduce(lambda x, y: [x[i] + y[i] for i in range(6)], [card.skin for card in cards])
         print('\n'.join(hand))
 
     def start(self, name):
@@ -60,7 +60,6 @@ class ECard:
         print([(player.name, player.side) for player in self.players])
 
 
-
 def main():
     name = input('What\'s your name, challenger.\n')
     game = ECard(line=5)
@@ -70,7 +69,6 @@ def main():
     # while game.winner is not None:
     game.act()
     # while game.winner is None:
-
 
 
 if "__main__" == __name__:

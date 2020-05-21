@@ -10,10 +10,11 @@ from random import shuffle
 # Third-party import
 
 # Local import
-from card import Role, Card
+from card import Card
 # }}}
 
 ROLES = ('Slave', 'Citizen', 'Emperor')
+
 
 class Hand:
     def __init__(self, role):
